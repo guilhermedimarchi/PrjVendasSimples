@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head><title>VENDAS</title></h:head>
+
+<h:body>
+<h:form>
+<h:panelGrid>
+
+<h1>SISTEMA DE VENDAS do: GUILHERME DIMARCHI 132173</h1>
+
+	<p:outputLabel value = "Numero"></p:outputLabel>
+	<p:inputText value ="#{vendaView.venda.numero}"></p:inputText>
+
+	<p:outputLabel value = "Vendedor"></p:outputLabel>
+	<p:inputText value ="#{vendaView.venda.vendedor}"></p:inputText>
+	
+	<p:outputLabel value = "Valor"></p:outputLabel>
+	<p:inputText value ="#{vendaView.venda.valor}"></p:inputText>
+	
+	<p:outputLabel value = "Loja"></p:outputLabel>
+	<p:inputText value ="#{vendaView.venda.loja}"></p:inputText>
+	
+	<p:commandButton value="SALVAR" action="#{vendaView.salvar()}" update="tabela"></p:commandButton>
+	<p:commandButton value="ATUALIZAR" action="#{vendaView.atualizar()}" update="tabela"></p:commandButton>
+	<p:commandButton value="DELETAR COM O NUMERO ACIMA (O DELETAR CONFORME A PROVA PEDE ESTA ABAIXO)" action="#{vendaView.deletar()}" update="tabela"></p:commandButton>
+	
+	<p:commandButton value="ATUALIZAR TOTAL"  update="tabela2"></p:commandButton>
+	
+	<p:dataTable value ="#{vendaView.total}"  id="tabela2">
+		<p:column headerText="Total de vendas">
+			<p:outputLabel value="#{vendaView.total}"></p:outputLabel>
+		</p:column>
+	</p:dataTable>
+
+	<p:dataTable value="#{vendaView.allVendas}" var = "venda" id="tabela">
+		<p:column headerText="Codigo">
+			<p:outputLabel value="#{venda.numero}"></p:outputLabel>
+		</p:column>
+	
+		<p:column headerText="Vendedor">
+			<p:outputLabel value="#{venda.vendedor}"></p:outputLabel>
+		</p:column>
+		
+		<p:column headerText="Valor">
+			<p:outputLabel value="#{venda.valor}"></p:outputLabel>
+		</p:column>
+	
+		<p:column headerText="Loja">
+			<p:outputLabel value="#{venda.loja}"></p:outputLabel>
+		</p:column>
+		
+		<p:column>
+		<p:commandButton value="DELETAR" action="#{vendaView.deletar(venda.numero)}" update="tabela"></p:commandButton>
+		</p:column>
+	
+	</p:dataTable>
+</h:panelGrid>
+</h:form>
+</h:body>
+</html>
